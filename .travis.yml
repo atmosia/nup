@@ -1,6 +1,10 @@
 language: c
 install: make
 
+env:
+  global:
+   - secure: "V/MQvuy1DrxTdSnf6BgXA+A9Szw3/U4+L+vaomGUkAWeUJ4Sg53bEhGCH0WcFi5X5Gvovsl8HrjtBNhJp+KC0xgU6bJfztakv4C/z7QAVmtsIOSroV4zBbdbkpPXlQZLABKIQbntqS6qcwZ/KBNVoYtsq4lUvINALr8VIqo6f9EGrSK9D3ajwMNN9FXPitl1A+zENAPXr3/qynyhy04/l9EOwVLt1G25niw7f/gJjwAoP8N85Ug5A+iYrCGk8spoqdLoGp47hmeouU/BNfOIpId0BLE05eOtPAvx3+YghZETuyQ/ImF8Nifku1isfO8SL0vL2DACLVHCsVn5k5aHnXqdogB9wdT1Gm5EVCmmEU/KfZBFtkG49vtoHapXFXTmkx0AbM3LvXacPPI1mcb5ENOx8hASRNsNjg/W761Cb3vcxkCdSbz0N4dPhCqCIhKIR/z5hwdYBuT3npSAc8lWWMX3H0tWQOgAdbA3Pyo2kZDBvHeLs8ydM4qaZBYApl4Aw1YvSX7Wxf9b/aXhcOlMzzWlrpBbKhdya3jeJbJY1XXi1coI1VQCoMMXVCaCXAqt5H2cil4FKn1MawBl0WxjYWJ4uNwl9qNrK/bnZ2lDUcZTs9boLimNOOeGJilEq6YAlAnKE7D4w+QT5KVg5f3q3tNikKdp3YbCOw86WlcGY7c="
+
 os:
   - linux
   - osx
@@ -9,5 +13,19 @@ compiler:
   - clang
   - gcc
 
+addons:
+  coverity_scan:
+    project:
+      name: "atmosia/nup"
+      description: "nup game"
+    notification_email: mikeyhc@atmosia.net
+    # build_command_prepend: "<Your build preprocessing command here>"
+    build_command: "make"
+    branch_pattern: coverity_scan
+
+before_install:
+  - echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+
 script:
   make
+
