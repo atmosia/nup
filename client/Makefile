@@ -21,3 +21,8 @@ options:
 ${NAME}: ${OBJ} ${EXTERN_OBJ}
 	@echo CC -o $@
 	@${CC} -o $@ $^ ${LDFLAGS}
+
+clean:
+	rm -f ${OBJ}
+
+.PHONY: all options clean

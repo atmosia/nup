@@ -1,0 +1,13 @@
+language: c
+install: make
+
+os:
+  - linux
+  - osx
+
+compiler:
+  - clang
+  - gcc
+
+script:
+  make

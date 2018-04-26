@@ -1,0 +1,9 @@
+TARGETS := all test clean
+PROJECTS := client
+
+${TARGETS}: ${PROJECTS}
+
+${PROJECTS}:
+	${MAKE} -C $@ ${MAKECMDGOALS}
+
+.PHONY: ${TARGETS} ${PROJECTS}
