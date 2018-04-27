@@ -16,6 +16,10 @@ script:
       mv local-coverage.mk local.mk
     fi
   - make test
+  - |
+    cd client
+    ./nup-client
+    cd ..
 
 after_success:
   - |
