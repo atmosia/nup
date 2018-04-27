@@ -53,3 +53,8 @@ dkms.conf
 
 # Binaries
 client/nup-client
+
+# Coverage
+*.gcno
+*.gcov
+*.gcda
