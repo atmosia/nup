@@ -25,7 +25,11 @@ options:
 
 ${NAME}: ${OBJ} ${EXTERN_OBJ}
 	@echo CC -o $@
-	@${CC} -o $@ $^ ${LDFLAGS}
+	@${CC} -o $@ $^ ${CFLAGS} ${CPPFLAGS} ${LDFLAGS}
+
+${TESTS}:
+	@echo CC -o $@
+	@${CC} -o $@ $@.c ${CFLAGS} ${CPPFLAGS} ${LDFLAGS}
 
 test: all ${TESTS}
 	@failures=0; \
