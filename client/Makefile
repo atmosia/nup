@@ -14,8 +14,7 @@ CPPFLAGS = -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_POSIX_C_SOURCE=2 \
 CFLAGS = -std=c99 -pedantic -Wall -Wno-deprecated-declarations -Os \
 	 ${CPPFLAGS} -g -Wextra
 CFLAGS += -fprofile-arcs -ftest-coverage
-CPPFLAGS += -I../include
-LDFLAGS += -L../lib -lpthread -static -lgcov --coverage
+LDFLAGS += -lpthread -static -lgcov --coverage
 
 all: options ${NAME}
 
