@@ -37,7 +37,7 @@ test: all ${TESTS}
 	done; \
 	exit $$failures
 	@if test ! -z "${COV}"; then \
-		echo ${COV} -pb $$(find . -name '*.gcno'); \
+		${COV} -pb $$(find . -name '*.gcno'); \
 	fi
 
 clean:
