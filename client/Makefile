@@ -4,17 +4,11 @@ NAME = nup-client
 SRC = main.c
 OBJ = ${SRC:.c=.o}
 
-COV = gcov
 
 TESTS_SRC = $(wildcard t/*.c)
 TESTS = ${TESTS_SRC:.c=}
 
-CPPFLAGS = -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_POSIX_C_SOURCE=2 \
-	   -DVERSION=\"${VERSION}\"
-CFLAGS = -std=c99 -pedantic -Wall -Wno-deprecated-declarations -Os \
-	 ${CPPFLAGS} -g -Wextra
-CFLAGS += -fprofile-arcs -ftest-coverage
-LDFLAGS += -lpthread -static -lgcov --coverage
+-include "../config.mk"
 
 all: options ${NAME}
 
@@ -24,7 +18,6 @@ options:
 	@echo "LDFLAGS  = ${LDFLAGS}"
 	@echo "CC       = ${CC}"
 	@echo "COV      = ${COV}"
-
 
 .c.o:
 	@echo CC $<
@@ -37,12 +30,13 @@ ${NAME}: ${OBJ} ${EXTERN_OBJ}
 test: all ${TESTS}
 	@failures=0; \
 	for test in "${TESTS}"; do \
+		echo running $$test; \
 		if ! $$test; then \
 			failures=$$(( $$failures + 1 )); \
 		fi; \
 	done; \
 	exit $$failures
-	@${COV} ${SRC} ${TESTS_SRC}
+	@if test ! -z "${COV}"; then ${COV} ${SRC} ${TESTS_SRC}; fi
 
 clean:
 	rm -f ${OBJ} ${TESTS}

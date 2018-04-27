@@ -10,8 +10,18 @@ compiler:
   - gcc
 
 script:
+  - |
+    if [[ ${TRAVIS_JOB_NUMBER##*.} = "2" ]]; then
+      echo enabling coverage for this build
+      mv local-coverage.mk local.mk
+    fi
   - make
   - make test
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - |
+    if [[ ${TRAVIS_JOB_NUMBER##*.} = "2" ]]; then
+      bash <(curl -s https://codecov.io/bash)
+    else
+      echo coverage not uploaded for this build type
+    fi
