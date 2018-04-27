@@ -16,10 +16,6 @@ script:
       mv local-coverage.mk local.mk
     fi
   - make test
-  - |
-    cd client
-    ./nup-client
-    cd ..
 
 after_success:
   - |
@@ -27,8 +23,7 @@ after_success:
       curl -so codecov.sh https://codecov.io/bash
       chmod +x codecov.sh
       echo uploading coverage information
-      ls client
-      ./codecov.sh -Xgcov -s client -s .
+      ./codecov.sh -Xgcov
     else
       echo coverage not uploaded for this build type
     fi
