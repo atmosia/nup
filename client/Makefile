@@ -36,7 +36,9 @@ test: all ${TESTS}
 		fi; \
 	done; \
 	exit $$failures
-	@if test ! -z "${COV}"; then ${COV} ${SRC} ${TESTS_SRC}; fi
+	@if test ! -z "${COV}"; then \
+		echo ${COV} -pb $$(find . -name '*.gcno'); \
+	fi
 
 clean:
 	rm -f ${OBJ} ${TESTS}
