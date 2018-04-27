@@ -24,6 +24,7 @@ after_success:
       curl -so codecov.sh https://codecov.io/bash
       chmod +x codecov.sh
       echo uploading coverage information
+      ls client
       ./codecov.sh -Xgcov -s client
     else
       echo coverage not uploaded for this build type
