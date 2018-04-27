@@ -28,7 +28,7 @@ after_success:
       chmod +x codecov.sh
       echo uploading coverage information
       ls client
-      ./codecov.sh -Xgcov -s client
+      ./codecov.sh -Xgcov -s client -s .
     else
       echo coverage not uploaded for this build type
     fi
