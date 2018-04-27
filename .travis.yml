@@ -21,7 +21,9 @@ script:
 after_success:
   - |
     if [[ ${TRAVIS_JOB_NUMBER##*.} = "2" ]]; then
-      bash <(curl -s https://codecov.io/bash)
+      curl -so codecov.sh https://codecov.io/bash
+      chmod +x codecov.sh
+      ./codecov.sh -Xgcov
     else
       echo coverage not uploaded for this build type
     fi
