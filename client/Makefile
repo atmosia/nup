@@ -8,7 +8,7 @@ OBJ = ${SRC:.c=.o}
 TESTS_SRC = $(wildcard t/*.c)
 TESTS = ${TESTS_SRC:.c=}
 
--include "../config.mk"
+include ../config.mk
 
 all: options ${NAME}
 
