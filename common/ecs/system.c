@@ -3,6 +3,7 @@
 
 #include "component.h"
 #include "component/appearance.h"
+#include "component/class.h"
 #include "component/displacement.h"
 #include "component/velocity.h"
 
@@ -14,6 +15,7 @@ typedef struct {
 	Displacement displacement[ENTITY_COUNT];
 	Velocity velocity[ENTITY_COUNT];
 	Appearance appearance[ENTITY_COUNT];
+	Class class[ENTITY_COUNT];
 } World;
 
 // TODO: optimize finding an empty slot

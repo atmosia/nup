@@ -9,6 +9,8 @@ TESTS = ${TESTS_SRC:.c=}
 
 include ../config.mk
 
+LDFLAGS += -lSDL2
+
 all: options ${NAME}
 
 options:
