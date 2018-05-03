@@ -9,6 +9,11 @@ compiler:
   - clang
   - gcc
 
+addons:
+  apt:
+    packages:
+      - libsdl2-dev
+
 script:
   - |
     if [[ ${TRAVIS_JOB_NUMBER##*.} = "2" ]]; then
